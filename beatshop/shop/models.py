@@ -36,12 +36,15 @@ class Product(models.Model):
         return self.name
     
     def get_absolute_url(self):
-        return f'/{self.category.slug}/{self.slug}/'
+        return f'/{self.slug}/'
     
     def get_image(self):
         if self.image:
             return 'http://127.0.0.1:8000' + self.image.url
         return ''
+    
+    def get_audio_file(self):
+        return 'http://127.0.0.1:8000' + self.audio_file.url
     
     def get_image_resized(self):
         if self.image_resized:
