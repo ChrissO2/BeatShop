@@ -20,7 +20,7 @@ class Genre(models.Model):
 
 
 class Product(models.Model):
-    category = models.ForeignKey(Genre, related_name='products', on_delete=models.CASCADE)
+    genre = models.ForeignKey(Genre, related_name='products', on_delete=models.CASCADE)
     name = models.CharField(max_length=255)
     slug = models.SlugField()
     price = models.DecimalField(max_digits=8, decimal_places=2)
