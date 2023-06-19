@@ -3,14 +3,7 @@ from .models import Order, OrderItem
 from shop.serializers import ProductSerializer
 
 
-class CustomersOrderItemSerializer(serializers.ModelSerializer):
-    product = ProductSerializer()
-    class Meta:
-        model = OrderItem
-        fields = [
-            'price',
-            'product',
-        ]
+
 
 
 class OrderItemSerializer(serializers.ModelSerializer):
@@ -45,16 +38,27 @@ class OrderSerializer(serializers.ModelSerializer):
         return order
     
 
+class CustomersOrderItemSerializer(serializers.ModelSerializer):
+    product = ProductSerializer()
+
+    class Meta:
+        model = OrderItem
+        fields = [
+            'price',
+            'product',
+        ]
+    
+
 class CustomersOrderSerializer(serializers.ModelSerializer):
     items = CustomersOrderItemSerializer(many=True)
     class Meta:
         model = Order
         fields = [
             'id',
-            'first_name',
-            'last_name',
-            'email',
-            'stripe_token',
+            # 'first_name',
+            # 'last_name',
+            # 'email',
+            # 'stripe_token',
             'items',
             'paid_amount'
         ]

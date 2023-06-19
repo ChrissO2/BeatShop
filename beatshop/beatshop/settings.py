@@ -21,7 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-(u6itt7c#$2_+p6gvtf$*a%e9xgciz*0r9=e235t(w7ze!ez%s'
-STRIPE_SECRET_KEY = 'pk_test_51NKUjeDudTADJMxuPysvJFVcObP2lt5Dv5gdeEqxr5mQo3Mg8vDLjAAuOytP7eAlAgJP5GKstCMTR7JeLtMfBF1v00X5PEnUx8'
+STRIPE_SECRET_KEY = 'sk_test_51NKUjeDudTADJMxuyddJuNFwG8WKv46aJOGjul1wY7xIotqnuV0FRQqsQIwAewdIjmazEyYTHOBz5Kh2Sde3ohjM005CMFjTsd'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -48,6 +48,11 @@ INSTALLED_APPS = [
 ]
 
 CORS_ALLOWED_ORIGINS = [
+    'http://localhost:8080',
+    'http://127.0.0.1:8080',
+]
+
+CORS_ORIGIN_WHITELIST = [
     'http://localhost:8080',
 ]
 
@@ -136,3 +141,9 @@ MEDIA_ROOT = BASE_DIR / 'media/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+    ),
+}

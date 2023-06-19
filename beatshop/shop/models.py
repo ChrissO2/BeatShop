@@ -1,8 +1,10 @@
 from io import BytesIO
 from PIL import Image
+import os
 
 from django.core.files import File
 from django.db import models
+from django.conf import settings
 
 
 class Genre(models.Model):
@@ -58,7 +60,7 @@ class Product(models.Model):
             else:
                 return ''
             
-    def resize_image(self, image, size=(250, 250)):
+    def resize_image(self, image, size=(800, 600)):
         img = Image.open(image)
         img.convert('RGB')
         img.thumbnail(size)
@@ -68,3 +70,10 @@ class Product(models.Model):
 
         thumbnail = File(thumb_io, name=image.name)
         return thumbnail
+    
+    def get_local_path(self):
+        if self.audio_file:
+            file_name = os.path.basename(self.audio_file.name)
+            local_path = os.path.join(settings.MEDIA_ROOT, 'uploads', file_name)
+            return local_path
+        return None

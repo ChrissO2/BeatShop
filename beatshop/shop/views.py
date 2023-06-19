@@ -1,4 +1,6 @@
-from django.http import Http404
+import requests
+
+from django.http import Http404, FileResponse
 from django.db.models import Q
 from django.shortcuts import get_object_or_404
 from rest_framework.views import APIView
@@ -22,3 +24,13 @@ class GenreProductsListView(APIView):
         products = Product.objects.filter(genre=genre)
         serializer = ProductSerializer(products, many=True)
         return Response(serializer.data)
+
+@api_view(['GET'])
+def download_product(request, product_id):
+    product = Product.objects.get(pk=product_id)
+    file_path = product.get_local_path()
+    file = open(file_path, 'rb')
+    response = FileResponse(file)
+    response['Content-Disposition'] = f'attachment; filename="{product.name}.mp3"'
+    return response
+
