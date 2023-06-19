@@ -10,7 +10,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 
 from .models import Order, OrderItem
-from .serializers import OrderSerializer, MyOrderSerializer
+from .serializers import OrderSerializer, CustomersOrderSerializer
 
 @api_view(['POST'])
 @authentication_classes([authentication.TokenAuthentication])
@@ -45,6 +45,6 @@ class OrdersList(APIView):
 
     def get(self, request, format=None):
         orders = Order.objects.filter(user=request.user)
-        serializer = MyOrderSerializer
+        serializer = CustomersOrderSerializer
         return Response(serializer.data)
 
