@@ -2,7 +2,9 @@
   <div id="wrapper">
     <nav class="navbar is-dark">
       <div class="navbar-brand">
-        <router-link to="/" class="navbar-item"><strong>BeatStore</strong></router-link>
+        <router-link to="/" class="navbar-item">
+          <strong>BeatStore</strong>
+        </router-link>
 
         <a class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbar-menu" @click="showMobileMenu = !showMobileMenu">
           <span aria-hidden="true"></span>
@@ -16,12 +18,21 @@
           <div class="navbar-item">
             <div class="buttons">
               <div v-if="isUserLoggedIn">
-                <router-link to="/account" class="button is-light mr-3">
-                  <i class="fa-solid fa-user"></i>
+                <router-link to="/account" class="button is-info mr-3">
+                  <span class="mr-2"><i class="fa-solid fa-user"></i></span>
+                  <span>My account</span>
                 </router-link>
-                <router-link to="/logout" class="button is-light mr-3">Log out</router-link>
+                <router-link to="/logout" class="button is-danger mr-3">
+                  <span class="icon"><i class="fa-solid fa-right-from-bracket"></i></span>
+                  <span>Log out</span>
+                </router-link>
               </div>
-              <div v-else><router-link to="/log-in" class="button is-light mr-3">Log in</router-link></div>
+              <div v-else>
+                <router-link to="/log-in" class="button is-info mr-3">
+                  <span class="icon"><i class="fa-solid fa-right-to-bracket"></i></span>
+                  <span>Log in</span>
+                </router-link>
+              </div>
               
               <router-link to="/cart" class="button is-success">
                 <span class="icon"><i class="fas fa-shopping-cart"></i></span>
@@ -43,6 +54,7 @@
 
     <footer class="footer">
       <p class="has-text-centered">Copyright (c) 2023</p>
+      <p class="has-text-centered">Created by <a href="https://github.com/ChrissO2">Krzysztof Otręba</a></p>
     </footer>
   </div>
   

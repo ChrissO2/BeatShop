@@ -35,10 +35,13 @@
 
                 <hr>
                 <div v-if="isUserLoggedIn && cartTotalLength > 0">
-                    <router-link to="/cart/checkout" class="button is-dark">Proceed to checkout</router-link>
+                    <router-link to="/cart/checkout" class="button is-dark mr-3">Proceed to checkout</router-link>
+                </div>
+                <div v-else-if="cartTotalLength === 0">
+                    <router-link to="/" class="button is-dark mr-3">You don't have any products in your cart</router-link>
                 </div>
                 <div v-else>
-                    <router-link to="/log-in" class="button is-light mr-3">Log in to proceed to payment</router-link>
+                    <router-link to="/log-in" class="button is-dark mr-3">Log in to proceed to payment</router-link>
                 </div>
                 
             </div>
@@ -49,7 +52,8 @@
 <script>
 import axios from 'axios'
 import CartItem from '@/components/CartItem.vue'
-import { StripeElementCard } from '@vue-stripe/vue-stripe';
+import { StripeElementCard } from '@vue-stripe/vue-stripe'
+import { toast } from 'bulma-toast'
 
 export default {
     name: 'Cart',
@@ -71,6 +75,14 @@ export default {
     methods: {
         removeFromCart(item) {
             this.$store.commit('removeFromCart', item)
+            toast({
+                message: 'Product was removed from the cart',
+                type: 'is-danger',
+                dismissible: true,
+                pauseOnHover: true,
+                duration: 2000,
+                position: 'bottom-right',
+            })
         }
     },
     computed: {

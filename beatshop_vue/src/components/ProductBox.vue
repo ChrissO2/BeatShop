@@ -32,12 +32,11 @@ export default {
     },
     methods: {
         addToCart(product) {
-            console.log(this.$store.state.cart)
             this.$store.commit('initializeStore')
             this.$store.commit('addToCart', product);
 
             toast({
-                message: 'The product was added to the cart',
+                message: 'Product was added to the cart',
                 type: 'is-success',
                 dismissible: true,
                 pauseOnHover: true,
