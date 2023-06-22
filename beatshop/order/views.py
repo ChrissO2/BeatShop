@@ -46,4 +46,3 @@ class OrdersList(APIView):
         
         serializer = CustomersOrderSerializer(orders, many=True)
         return Response(serializer.data)
-
