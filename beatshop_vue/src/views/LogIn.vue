@@ -51,7 +51,7 @@ export default {
         }
     },
     mounted() {
-        document.title = 'Log In | Djackets'
+        document.title = 'Log In | BeatStore'
     },
     methods: {
         async submitForm() {
