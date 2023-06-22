@@ -28,6 +28,10 @@
                 </router-link>
               </div>
               <div v-else>
+                <router-link to="/sign-up" class="button is-info mr-3">
+                  <span class="icon"><i class="fa-regular fa-id-card"></i></span>
+                  <span>Sign up</span>
+                </router-link>
                 <router-link to="/log-in" class="button is-info mr-3">
                   <span class="icon"><i class="fa-solid fa-right-to-bracket"></i></span>
                   <span>Log in</span>

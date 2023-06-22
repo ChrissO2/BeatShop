@@ -14,8 +14,11 @@
                 class="custom-audio">
             </audio>
 
-            <div class="control">
+            <div v-if="!isProductInCart" class="control">
                 <a class="button is-dark" @click="addToCart(product)">Add to cart</a>
+            </div>
+            <div v-else class="control">
+                <a class="button is-danger" @click="removeFromCart(product)">Remove from cart</a>
             </div>
         </div>
     </div>
@@ -43,8 +46,25 @@ export default {
                 duration: 2000,
                 position: 'bottom-right',
             })
-
         },
+
+        removeFromCart(product) {
+            this.$store.commit('removeFromCart', product)
+
+            toast({
+                message: 'Product was removed from the cart',
+                type: 'is-danger',
+                dismissible: true,
+                pauseOnHover: true,
+                duration: 2000,
+                position: 'bottom-right',
+            })
+        }
+    },
+    computed: {
+        isProductInCart() {
+            return this.$store.state.cart.items.some(item => item.id === this.product.id)
+        }
     }
 }
 </script>
