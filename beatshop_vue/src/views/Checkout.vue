@@ -84,6 +84,7 @@
 
 <script>
 import axios from 'axios'
+import { stripe_secret_key } from '@/private'
 
 export default {
     name: 'Checkout',
@@ -110,7 +111,7 @@ export default {
         this.cart = this.$store.state.cart
 
         if (this.cartTotalLength > 0) {
-            this.stripe = Stripe('pk_test_51NKUjeDudTADJMxuPysvJFVcObP2lt5Dv5gdeEqxr5mQo3Mg8vDLjAAuOytP7eAlAgJP5GKstCMTR7JeLtMfBF1v00X5PEnUx8')
+            this.stripe = Stripe(stripe_secret_key)
             const elements = this.stripe.elements();
             this.card = elements.create('card', {hidePostalCode: true})
 
