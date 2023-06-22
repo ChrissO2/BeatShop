@@ -1,6 +1,6 @@
 # BeatShop
 
-Application created in Django rest framework and vuex.
+Application created in Django rest framework and vue.
 To run the API you need to makemigrations in django project by running these commands:
 
 python manage.py makemigrations
