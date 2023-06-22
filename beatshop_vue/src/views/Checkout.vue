@@ -130,8 +130,16 @@ export default {
                 this.errors.push('The last name field is missing!')
             }
 
+            
+
+
             if (this.email === '') {
                 this.errors.push('The email field is missing!')
+            } else {
+                const emailReg = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
+                if (!this.email.match(emailReg)) {
+                    this.errors.push("The email field is invalid")
+                }
             }
 
             if (!this.errors.length) {
